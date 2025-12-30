@@ -3,6 +3,7 @@
   <meta charset="UTF-8">
   <title>Новогоднее поздравление 🎄</title>
   <style>
+    /* Все предыдущие стили остаются без изменений... */
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -148,6 +149,7 @@
       100% { background-position: 400% 0; }
     }
 
+    /* Стили для изображений в галерее (остаются) */
     #gallery img {
       width: 180px;
       height: 180px;
@@ -157,6 +159,7 @@
       transition: all 0.3s ease;
       object-fit: cover;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      cursor: pointer; /* Добавляем курсор-указатель */
     }
 
     #gallery img:hover {
@@ -248,6 +251,141 @@
       .stat-item { padding: 8px 15px; font-size: 0.9em; }
       .music-note { bottom: 10px; right: 10px; font-size: 20px; }
     }
+
+    /* === ДОБАВЛЯЕМ ТОЛЬКО ЭТИ СТИЛИ ДЛЯ МОДАЛЬНОГО ОКНА === */
+    
+    /* Модальное окно */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Изображение в модальном окне */
+    .modal-content {
+      margin: auto;
+      display: block;
+      max-width: 90%;
+      max-height: 85vh;
+      border-radius: 10px;
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+      animation: zoomIn 0.3s ease;
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    /* Кнопка закрытия */
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 10000;
+    }
+
+    .close:hover {
+      color: #FF69B4;
+      transform: rotate(90deg) scale(1.1);
+    }
+
+    /* Подпись к изображению */
+    #caption {
+      margin: 15px auto;
+      text-align: center;
+      color: white;
+      font-size: 1.2em;
+      max-width: 700px;
+      padding: 10px;
+    }
+
+    /* Кнопки навигации (лево/право) */
+    .modal-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      border: none;
+      padding: 15px 20px;
+      font-size: 24px;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      z-index: 10000;
+    }
+
+    .modal-nav:hover {
+      background-color: rgba(255, 215, 0, 0.8);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .prev {
+      left: 20px;
+    }
+
+    .next {
+      right: 20px;
+    }
+
+    /* Счетчик изображений */
+    .image-counter {
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      color: white;
+      font-size: 18px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 8px 15px;
+      border-radius: 20px;
+      z-index: 10000;
+    }
+
+    /* Адаптивность для мобильных */
+    @media (max-width: 768px) {
+      .modal-nav {
+        padding: 10px 15px;
+        font-size: 18px;
+      }
+      
+      .prev {
+        left: 10px;
+      }
+      
+      .next {
+        right: 10px;
+      }
+      
+      .close {
+        top: 10px;
+        right: 15px;
+        font-size: 30px;
+      }
+      
+      .image-counter {
+        top: 10px;
+        left: 15px;
+        font-size: 14px;
+        padding: 5px 10px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -280,10 +418,44 @@
   <div id="gallery" style="display:none;">
     <h2>🎞️ Галерея воспоминаний</h2>
     <div>
-      <img src="https://images.unsplash.com/photo-1579113800032-c38bd7635818?w=400&h=400&fit=crop">
-      <img src="https://images.unsplash.com/photo-1482517967863-00e15c9b44be?w=400&h=400&fit=crop">
-      <img src="https://images.unsplash.com/photo-1545420333-23a22b18b9fa?w=400&h=400&fit=crop">
+      <!-- Ваши изображения - теперь они кликабельные -->
+      <img src="C:/Users/Windows10/Desktop/Новая папка/images/1.jpg" alt="Фото 1" onclick="openModal(0)">
+      <img src="C:/Users/Windows10/Desktop/Новая папка/images/2.jpg" alt="Фото 2" onclick="openModal(1)">
+      <img src="C:/Users/Windows10/Desktop/Новая папка/images/3.jpg" alt="Фото 3" onclick="openModal(2)">
+      <img src="C:/Users/Windows10/Desktop/Новая папка/images/4.jpg" alt="Фото 4" onclick="openModal(3)">
+      <img src="C:/Users/Windows10/Desktop/Новая папка/images/5.jpg" alt="Фото 5" onclick="openModal(4)">
+      <img src="C:/Users/Windows10/Desktop/Новая папка/images/6.jpg" alt="Фото 6" onclick="openModal(5)">
+      <img src="C:/Users/Windows10/Desktop/Новая папка/images/7.jpg" alt="Фото 7" onclick="openModal(6)">
+      <img src="C:/Users/Windows10/Desktop/Новая папка/images/8.jpg" alt="Фото 8" onclick="openModal(7)">
+      <img src="C:/Users/Windows10/Desktop/Новая папка/images/9.jpg" alt="Фото 9" onclick="openModal(8)">
+      <img src="C:/Users/Windows10/Desktop/Новая папка/images/10.jpg" alt="Фото 10" onclick="openModal(9)">
+      <img src="C:/Users/Windows10/Desktop/Новая папка/images/11.jpg" alt="Фото 11" onclick="openModal(10)">
+      <img src="C:/Users/Windows10/Desktop/Новая папка/images/12.jpg" alt="Фото 12" onclick="openModal(11)">
+      <img src="C:/Users/Windows10/Desktop/Новая папка/images/13.jpg" alt="Фото 13" onclick="openModal(12)">
+      <img src="C:/Users/Windows10/Desktop/Новая папка/images/14.jpg" alt="Фото 14" onclick="openModal(13)">
+      <img src="C:/Users/Windows10/Desktop/Новая папка/images/15.jpg" alt="Фото 15" onclick="openModal(14)">
+      <img src="C:/Users/Windows10/Desktop/Новая папка/images/16.jpg" alt="Фото 16" onclick="openModal(15)">
+      <img src="C:/Users/Windows10/Desktop/Новая папка/images/17.jpg" alt="Фото 17" onclick="openModal(16)">
+      <img src="C:/Users/Windows10/Desktop/Новая папка/images/18.jpg" alt="Фото 18" onclick="openModal(17)">
+      <img src="C:/Users/Windows10/Desktop/Новая папка/images/19.jpg" alt="Фото 19" onclick="openModal(18)">
+      <img src="C:/Users/Windows10/Desktop/Новая папка/images/20.jpg" alt="Фото 20" onclick="openModal(19)">
     </div>
+    
+    <p style="margin-top: 20px; opacity: 0.8;">
+      <small>🎯 Нажмите на любую фотографию для просмотра в полном размере</small>
+    </p>
+  </div>
+
+  <!-- Модальное окно для полноразмерного просмотра -->
+  <div id="imageModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <div class="image-counter" id="imageCounter">1 / 20</div>
+    
+    <button class="modal-nav prev" onclick="changeImage(-1)">&#10094;</button>
+    <button class="modal-nav next" onclick="changeImage(1)">&#10095;</button>
+    
+    <img class="modal-content" id="fullImage">
+    <div id="caption"></div>
   </div>
 
   <div id="game" style="display:none;">
@@ -324,26 +496,111 @@
   </div>
 
   <script>
+    // ============= ФУНКЦИИ ДЛЯ МОДАЛЬНОГО ОКНА =============
+    let currentImageIndex = 0;
+    
+    // Массив с путями к изображениям
+    const galleryImages = [
+      "C:/Users/Windows10/Desktop/Новая папка/images/1.jpg",
+      "C:/Users/Windows10/Desktop/Новая папка/images/2.jpg",
+      "C:/Users/Windows10/Desktop/Новая папка/images/3.jpg",
+      "C:/Users/Windows10/Desktop/Новая папка/images/4.jpg",
+      "C:/Users/Windows10/Desktop/Новая папка/images/5.jpg",
+      "C:/Users/Windows10/Desktop/Новая папка/images/6.jpg",
+      "C:/Users/Windows10/Desktop/Новая папка/images/7.jpg",
+      "C:/Users/Windows10/Desktop/Новая папка/images/8.jpg",
+      "C:/Users/Windows10/Desktop/Новая папка/images/9.jpg",
+      "C:/Users/Windows10/Desktop/Новая папка/images/10.jpg",
+      "C:/Users/Windows10/Desktop/Новая папка/images/11.jpg",
+      "C:/Users/Windows10/Desktop/Новая папка/images/12.jpg",
+      "C:/Users/Windows10/Desktop/Новая папка/images/13.jpg",
+      "C:/Users/Windows10/Desktop/Новая папка/images/14.jpg",
+      "C:/Users/Windows10/Desktop/Новая папка/images/15.jpg",
+      "C:/Users/Windows10/Desktop/Новая папка/images/16.jpg",
+      "C:/Users/Windows10/Desktop/Новая папка/images/17.jpg",
+      "C:/Users/Windows10/Desktop/Новая папка/images/18.jpg",
+      "C:/Users/Windows10/Desktop/Новая папка/images/19.jpg",
+      "C:/Users/Windows10/Desktop/Новая папка/images/20.jpg"
+    ];
+
+    // Открыть модальное окно с изображением
+    function openModal(index) {
+      currentImageIndex = index;
+      updateModal();
+      document.getElementById('imageModal').style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Закрыть модальное окно
+    function closeModal() {
+      document.getElementById('imageModal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    // Обновить содержимое модального окна
+    function updateModal() {
+      const modalImg = document.getElementById('fullImage');
+      const caption = document.getElementById('caption');
+      const counter = document.getElementById('imageCounter');
+      
+      modalImg.src = galleryImages[currentImageIndex];
+      modalImg.alt = `Фото ${currentImageIndex + 1}`;
+      caption.textContent = `Воспоминание ${currentImageIndex + 1} из ${galleryImages.length}`;
+      counter.textContent = `${currentImageIndex + 1} / ${galleryImages.length}`;
+    }
+
+    // Переключение между изображениями
+    function changeImage(direction) {
+      currentImageIndex += direction;
+      
+      // Зацикливание
+      if (currentImageIndex < 0) {
+        currentImageIndex = galleryImages.length - 1;
+      } else if (currentImageIndex >= galleryImages.length) {
+        currentImageIndex = 0;
+      }
+      
+      updateModal();
+    }
+
+    // Управление с клавиатуры
+    document.addEventListener('keydown', (e) => {
+      const modal = document.getElementById('imageModal');
+      if (modal.style.display === 'block') {
+        switch(e.key) {
+          case 'ArrowLeft':
+            changeImage(-1);
+            break;
+          case 'ArrowRight':
+            changeImage(1);
+            break;
+          case 'Escape':
+            closeModal();
+            break;
+        }
+      }
+    });
+
+    // Закрыть при клике вне изображения
+    document.getElementById('imageModal').onclick = function(event) {
+      if (event.target.classList.contains('modal')) {
+        closeModal();
+      }
+    };
+
+    // ============= ВСЕ ОСТАЛЬНЫЕ ФУНКЦИИ =============
+    
     // ============= ПРОСТАЯ НОВОГОДНЯЯ МУЗЫКА =============
     function playMusic() {
-      // Создаем аудио элемент
       const audio = new Audio();
-      
-      // Используем простую и надежную новогоднюю музыку (Jingle Bells)
-      // Это короткий фрагмент, который будет зациклен
       audio.src = "https://assets.mixkit.co/music/preview/mixkit-jingle-bells-311.mp3";
       audio.loop = true;
-      audio.volume = 0.3; // 30% громкости, чтобы не мешала
+      audio.volume = 0.3;
       
-      // Пытаемся запустить музыку
       const playPromise = audio.play();
       
       if (playPromise !== undefined) {
         playPromise.catch(error => {
-          // Если автовоспроизведение заблокировано, ждем клика пользователя
-          console.log("Автовоспроизведение заблокировано. Музыка запустится после первого клика.");
-          
-          // Запускаем музыку при первом клике на странице
           document.body.addEventListener('click', function startMusicOnClick() {
             audio.play();
             document.body.removeEventListener('click', startMusicOnClick);
@@ -402,7 +659,7 @@
       document.getElementById("gallery").style.display = "block";
     }
 
-    // ============= МИНИ-ИГРА =============
+    // ============= ПОЛНЫЙ КОД ИГРЫ "ПОМОГИ ДЕДУ МОРОЗУ" =============
     function startGame() {
       hideAll();
       document.getElementById("game").style.display = "block";
@@ -922,36 +1179,6 @@
       }
     }
     setInterval(createSparkle, 100);
-
-    // Фоновые огоньки
-    function createTwinkle() {
-      const twinkle = document.createElement("div");
-      twinkle.style.position = "fixed";
-      twinkle.style.width = Math.random() * 10 + 5 + "px";
-      twinkle.style.height = twinkle.style.width;
-      twinkle.style.left = Math.random() * window.innerWidth + "px";
-      twinkle.style.top = Math.random() * window.innerHeight + "px";
-      twinkle.style.backgroundColor = ["#FFD700", "#FF69B4", "#00CED1"][Math.floor(Math.random()*3)];
-      twinkle.style.borderRadius = "50%";
-      twinkle.style.opacity = "0";
-      twinkle.style.boxShadow = "0 0 10px currentColor";
-      twinkle.style.animation = `pulse ${Math.random()*3+2}s infinite`;
-      document.body.appendChild(twinkle);
-      
-      setTimeout(() => twinkle.remove(), 5000);
-    }
-
-    // Добавляем анимацию пульсации
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes pulse {
-        0%, 100% { opacity: 0; transform: scale(0.5); }
-        50% { opacity: 0.8; transform: scale(1); }
-      }
-    `;
-    document.head.appendChild(style);
-
-    setInterval(createTwinkle, 500);
   </script>
 </body>
 </html>
