@@ -419,7 +419,7 @@
     <h2>🎞️ Галерея воспоминаний</h2>
     <div>
       <!-- Ваши изображения - теперь они кликабельные -->
-      <img src="C:/Users/Windows10/Desktop/Новая папка/images/1.jpg" alt="Фото 1" onclick="openModal(0)">
+      <img src="1.jpg" alt="Фото 1" onclick="openModal(0)">
       <img src="C:/Users/Windows10/Desktop/Новая папка/images/2.jpg" alt="Фото 2" onclick="openModal(1)">
       <img src="C:/Users/Windows10/Desktop/Новая папка/images/3.jpg" alt="Фото 3" onclick="openModal(2)">
       <img src="C:/Users/Windows10/Desktop/Новая папка/images/4.jpg" alt="Фото 4" onclick="openModal(3)">
